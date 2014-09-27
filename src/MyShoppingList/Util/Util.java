@@ -396,6 +396,9 @@ public class Util {
     }
     public ImageIcon getDirections(String addressOrigin, String destination)
     {
+    	if(addressOrigin==null || destination==null){throw new IllegalArgumentException("String param = null for public ImageIcon getDirections");}
+    	if(addressOrigin.trim().equals("") || destination.trim().equals("")){throw new IllegalArgumentException("String param is only whitespace or a zero length string");}
+    	
     	String result = "";
     	addressOrigin = addPluses(addressOrigin);
     	destination = addPluses(destination);
