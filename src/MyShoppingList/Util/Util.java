@@ -18,6 +18,7 @@ public class Util {
     private String storeAddress;
     private Driver driver;
     
+    public Util(){}
     public Util(Driver driver)
     {
     	this.driver = driver;
@@ -170,8 +171,7 @@ public class Util {
     	
     	//System.out.println(this.storeAddress.indexOf("ID>"));
     	while(this.storeAddress.indexOf("ID>")>0 && i < 10 && j < 5)
-    	{
-    		
+    	{	
     		stores[i][j] = getStoreId();
     		j++;
     		stores[i][j] = getStoreName();
@@ -189,6 +189,42 @@ public class Util {
     	
     	return stores;
     }
+    
+    public String[][] getProductInfo(String[] products)
+    {
+    	String[][] productInfo = new String[products.length][3];
+    	
+    	
+    }
+    private String getPrice(String productID)
+    {
+    	String result = "";
+    	
+    	try
+    	{
+            URL oracle = new URL("https://api.target.com/v2/products/search?searchTerm="+productID+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+            {
+                result = result + inputLine;
+            }
+            in.close();	
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
+    	result = result.substring(result.indexOf("formattedPriceValue")+8);
+    	result = result.substring(result.indexOf("formattedPriceValue")+23);
+    	result = result.substring(0,result.indexOf('"'));
+    	
+    	return result;
+    }
+    
     private String closestStoreString(double[] latlng, int range)
     {
     	String result = "";
@@ -258,6 +294,7 @@ public class Util {
     	}
     	return counter+"";
     }
+
  
 
     public String getProductID(String input)

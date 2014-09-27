@@ -41,8 +41,9 @@ public class TestMainForUtil {
 			System.out.println(util.getStringArray()[i]);
 		}
 	*/
+		
 		Util util = new Util();
 		
-		System.out.println(util.getProductID("patio"));
+		System.out.println(util.getPrice("009-10-0099"));
 	}
 }
