@@ -399,10 +399,9 @@ public class Util {
     	String result = "";
     	addressOrigin = addPluses(addressOrigin);
     	destination = addPluses(destination);
-    	
     	try
     	{
-    		URL oracle = new URL("http://api.target.com/v2/location/map/road/route/image/driving?origin="+ addressOrigin +"&destination="+ destination +"&optimize=time&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+    		URL oracle = new URL("http://api.target.com/v2/location/map/road/route/image/driving?origin="+ addressOrigin.substring(0,addressOrigin.length()-1) +"&destination="+ destination +"&optimize=time&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
     		URLConnection yc = oracle.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             
