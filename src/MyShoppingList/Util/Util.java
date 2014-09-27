@@ -123,22 +123,40 @@ public class Util {
 
     }
     
-    private void geoCoding(String address)
+    private int[] findLatLng(String address)
     {
-    	try
+    	int[] result = new int[2];
+		String bigString ="";
+		int lat;
+		int lng;
+		String latString;
+		String lngString;
+		try
     	{
-            URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
+            URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address="+ address +"&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
             URLConnection yc = oracle.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(
                                         yc.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) 
-                System.out.println(inputLine);
+                bigString = bigString + (inputLine);
             in.close();	
+            
+            lat = bigString.indexOf("lat")+7;
+            lng = bigString.indexOf("lng")+7;
+            
+            latString = bigString.substring(lat);
+            lngString = bigString.substring(lng);   
+            
+            result[0] = Integer.parseInt(latString.substring(0,latString.indexOf(',')));
+            result[1] = Integer.parseInt(lngString.substring(0,lngString.indexOf('}')));
+            
     	}
     	catch(Exception e)
     	{
     		e.printStackTrace();
-    	}  	
+    	}
+		
+		return result;
     }
 }
