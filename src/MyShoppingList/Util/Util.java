@@ -3,9 +3,10 @@ package MyShoppingList.Util;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
+
+import MyShoppingList.Driver.Driver;
 
 //import org.json.JSONString;
 
@@ -15,11 +16,11 @@ public class Util {
     private String[] stringArray;
     private int length;
     private String storeAddress;
+    private Driver driver;
     
-    
-    public Util()
+    public Util(Driver driver)
     {
-    	
+    	this.driver = driver;
     }
     public int sortIntegers(int[] inputArray) throws IllegalArgumentException
     {
@@ -154,7 +155,7 @@ public class Util {
 		
 		return result;
     }
-    
+
     public String[][] closestStores(String address)
     {
     	double[] geoCord = new double[2];
@@ -180,6 +181,8 @@ public class Util {
     		stores[i][j] = getTelephone();
     		j++;
     		stores[i][j] = getDistance();
+    		j++;
+    		stores[i][j] = getTotalProducts(Integer.parseInt(stores[i][0]), driver.getListPanel().getProducts());
     		i++;	
     		j = 0;
     	}
@@ -245,6 +248,17 @@ public class Util {
     	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+26);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
+    private String getTotalProducts(int storeID,String[] products)
+    {
+    	int counter = 0;
+    	
+    	for(int i = 0; i < products.length;i++)
+    	{
+    		if(getProductStock(storeID,products[i])>0){counter++;}
+    	}
+    	return counter+"";
+    }
+ 
 
     public String getProductID(String input)
     {
@@ -273,7 +287,7 @@ public class Util {
     	
     	return result;
     }
-	public double getProductStock(int storeId, String productId)
+	private double getProductStock(int storeId, String productId)
 	{
 		/*
 		 * This method returns the amount of product in stock at a specified store
