@@ -169,8 +169,16 @@ public class Util {
     	//System.out.println(geoCord[0] + " " + geoCord[1]);
     	this.storeAddress = closestStoreString(geoCord,range);
     	
+    	for(i = 0; i < 10; i++)
+    	{
+    		for(j = 0; j <5;j++)
+    		{
+    			stores[i][j] = "";
+    		}
+    		j = 0;
+    	}
     	//System.out.println(this.storeAddress.indexOf("ID>"));
-    	while(this.storeAddress.indexOf("ID>")>0 && i < 10 && j < 5)
+    	for(i =0;this.storeAddress.indexOf("ID>")>0 && i < 10 && j < 5;)
     	{	
     		stores[i][j] = getStoreId();
     		j++;
