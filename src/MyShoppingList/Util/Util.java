@@ -485,6 +485,7 @@ public class Util {
 	private String addPluses(String string)
 	{
 		String result = "";
+		string = string.trim();
 		for(int i = 0; i < string.length(); i++)
 		{
 			if(string.charAt(i) == ' ')
