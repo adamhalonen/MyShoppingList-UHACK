@@ -2,7 +2,6 @@ package MyShoppingList.Driver;
 
 import java.awt.Dimension;
 import java.awt.EventQueue;
-import java.awt.Image;
 import java.awt.Toolkit;
 import java.io.File;
 import java.io.IOException;
@@ -12,16 +11,23 @@ import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.UIManager;
 import javax.swing.border.EmptyBorder;
 
+import MyShoppingList.Panels.AboutPanel;
 import MyShoppingList.Panels.AddressPanel;
+import MyShoppingList.Panels.MenuBar;
 
 public class Driver extends JFrame
 {
 	private JPanel contentPane;
 	
 	//Panels
-	AddressPanel addressPanel = new AddressPanel(this);
+	private AddressPanel addressPanel = new AddressPanel(this);
+	private AboutPanel aboutPanel = new AboutPanel(this);
+	
+	//Menu Bar 
+	private MenuBar menuBar = new MenuBar(this);
 	
 	public static void main(String[] args)
 	{
@@ -31,8 +37,8 @@ public class Driver extends JFrame
 			{
 				try
 				{
-					Driver frame = new Driver();
-					frame.setVisible(true);
+					UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+					new Driver();
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -40,11 +46,13 @@ public class Driver extends JFrame
 		});
 	}
 	
-	public Driver() {
+	public Driver()
+	{
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();
 		
+		setVisible(true);
 		setTitle("My Shopping List");
 		try {setIconImage(ImageIO.read(new File("res/icon.png")));}
 		catch (IOException e) {e.printStackTrace();}
@@ -57,11 +65,18 @@ public class Driver extends JFrame
 		contentPane.setLayout(null);
 		addressPanel.setBounds(5, 5, 784, 555);
 		
+		contentPane.add(menuBar);
+		
+		contentPane.add(aboutPanel);
+		aboutPanel.setVisible(false);
+		
 		contentPane.add(addressPanel);
 		
-		JLabel bg = new JLabel("");
+		JLabel bg = new JLabel();
 		bg.setBounds(0, 0, 794, 565);
 		bg.setIcon(new ImageIcon("res/bg.png"));
 		contentPane.add(bg);
 	}
+	
+	public AboutPanel getAboutPanel(){return aboutPanel;}
 }
