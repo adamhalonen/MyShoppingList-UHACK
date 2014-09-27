@@ -157,7 +157,7 @@ public class StoreResultsPanel extends JPanel implements MouseListener , ActionL
 	public void mouseClicked(MouseEvent e)
 	{
 		setVisible(false);
-		driver.getProductAvailability().setVisible(false);
+		driver.getProductAvailability().setVisible(true);
 		
 		if(e.getSource().equals(label))
 		{

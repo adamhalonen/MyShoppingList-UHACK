@@ -21,6 +21,7 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener
 	
 	public ProductAvailabilityPanel(Driver d)
 	{
+		setOpaque(false);
 		setLayout(null);
 		driver = d;
 		
@@ -28,28 +29,29 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener
 		setBounds(0,0,800,600);
 		
 		lblName = new JLabel("Name");
-		lblName.setBounds(95, 75, 371, 44);
+		lblName.setBounds(95, 62, 371, 44);
 		add(lblName);
 		
 		JButton btnDirections = new JButton("Directions");
-		btnDirections.setBounds(600, 127, 97, 25);
+		btnDirections.setBounds(596, 115, 97, 25);
 		btnDirections.addActionListener(this);
 		btnDirections.setActionCommand("directions");
 		add(btnDirections);
 		
 		lblPhoneNumberaddress = new JLabel("Phone Number/Address");
-		lblPhoneNumberaddress.setBounds(95, 131, 173, 16);
+		lblPhoneNumberaddress.setBounds(95, 119, 173, 16);
 		add(lblPhoneNumberaddress);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(95, 169, 598, 365);
+		scrollPane.setBounds(95, 148, 598, 365);
 		add(scrollPane);
 		
 		textArea = new JTextArea();
 		scrollPane.setViewportView(textArea);
+		textArea.setEditable(false);
 		
 		btnBack = new JButton("Back");
-		btnBack.setBounds(347, 547, 97, 25);
+		btnBack.setBounds(347, 526, 97, 25);
 		btnBack.addActionListener(this);
 		btnBack.setActionCommand("back");
 		add(btnBack);
@@ -69,6 +71,10 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener
 	public void actionPerformed(ActionEvent e)
 	{
 		if(e.getActionCommand().equals("directions")){}
-		else if(e.getActionCommand().equals("back")){}
+		else if(e.getActionCommand().equals("back"))
+		{
+			setVisible(false);
+			driver.getStoreResults().setVisible(true);
+		}
 	}
 }

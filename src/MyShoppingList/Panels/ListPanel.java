@@ -70,7 +70,7 @@ public class ListPanel extends JPanel implements ActionListener
 		});
 		
 		JScrollPane scrollPane = new JScrollPane(list);
-		scrollPane.setBounds(91, 126, 569, 361);
+		scrollPane.setBounds(107, 126, 569, 361);
 		add(scrollPane);
 		
 		JButton btnRemove = new JButton("Remove");
