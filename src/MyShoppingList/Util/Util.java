@@ -157,7 +157,7 @@ public class Util {
 		return result;
     }
 
-    public String[][] closestStores(String address)
+    public String[][] closestStores(String address,int range)
     {
     	double[] geoCord = new double[2];
     	int i = 0;
@@ -167,7 +167,7 @@ public class Util {
     	
     	geoCord = findLatLng(address);
     	//System.out.println(geoCord[0] + " " + geoCord[1]);
-    	this.storeAddress = closestStoreString(geoCord,100);
+    	this.storeAddress = closestStoreString(geoCord,range);
     	
     	//System.out.println(this.storeAddress.indexOf("ID>"));
     	while(this.storeAddress.indexOf("ID>")>0 && i < 10 && j < 5)
@@ -193,6 +193,11 @@ public class Util {
     public String[][] getProductInfo(String[] products)
     {
     	String[][] productInfo = new String[products.length][3];
+    	
+    	
+    	
+    	
+    	return productInfo;
     	
     	
     }
