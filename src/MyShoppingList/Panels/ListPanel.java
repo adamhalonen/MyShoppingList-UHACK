@@ -23,6 +23,8 @@ public class ListPanel extends JPanel implements ActionListener
 	private JTextField txtItems;
 	private DefaultListModel<String> listModel;
 	private String[] products;
+	private int index;
+	private JList<String> list;
 	
 	public ListPanel(Driver d)
 	{
@@ -56,11 +58,16 @@ public class ListPanel extends JPanel implements ActionListener
 		btnFindStore.addActionListener(this);
 		add(btnFindStore);
 		
-		JList<String> list;
 		listModel = new DefaultListModel();
 		list = new JList(listModel);
 		list.setSelectedIndex(0);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+		list.addListSelectionListener(new ListSelectionListener()
+		{
+			public void valueChanged(ListSelectionEvent e)
+			{
+			}
+		});
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(91, 126, 569, 361);
@@ -85,7 +92,11 @@ public class ListPanel extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("remove"))
 		{
-			
+			index = list.getSelectedIndex();
+			if(index > -1)
+			{
+				listModel.removeElementAt(index);
+			}
 		}
 		else if(cmd.equalsIgnoreCase("findStore"))
 		{
