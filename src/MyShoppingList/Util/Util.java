@@ -14,6 +14,7 @@ public class Util {
 	private int[] intArray;
     private String[] stringArray;
     private int length;
+    private String storeAddress;
     
     
     public Util()
@@ -117,28 +118,6 @@ public class Util {
     	return this.stringArray;
     }
     
-/*    
-    private void URLConnectionTest ()
-    {
-    	//JSONString jread;
-    	try
-    	{
-            URL oracle = new URL("http://api.target.com/v2/products/availability?productId=070-09-0141&storeId=694&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
-            URLConnection yc = oracle.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                                        yc.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) 
-                System.out.println(inputLine);
-            in.close();	
-    	}
-    	catch(Exception e)
-    	{
-    		e.printStackTrace();
-    	}
-
-    }
-*/
     private double[] findLatLng(String address)
     {
     	double[] result = new double[2];
@@ -176,5 +155,74 @@ public class Util {
 		return result;
     }
     
+    public String[][] closestStores(String address)
+    {
+    	double[] geoCord = new double[2];
+    	
+    	this.storeAddress = address;
+    	geoCord = findLatLng(storeAddress);
+    	
+    	
+    	return null;
+    }
+    private String getStoreId()
+    {
+    	String id;
+    	
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID"+2));
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    	
+    }
+    private String getStoreName()
+    {
+    	String id;
+    	
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Name"+4));
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    }
+    private String getStoreAddress()
+    {
+    	String id;
+    	
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("FormattedAddress"+16));
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    }
+    private String getTelephone()
+    {
+    	String id;
+    	
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("TelephoneNumber"+15));
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    }
+    private String getDistance()
+    {
+    	String id;
+    	
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID"+2));
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    }
+
     
+/*    
+    private void URLConnectionTest ()
+    {
+    	//JSONString jread;
+    	try
+    	{
+            URL oracle = new URL("http://api.target.com/v2/products/availability?productId=070-09-0141&storeId=694&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+            URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                                        yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+                System.out.println(inputLine);
+            in.close();	
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+
+    }
+*/
 }
