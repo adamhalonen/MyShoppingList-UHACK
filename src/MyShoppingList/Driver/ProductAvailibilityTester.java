@@ -26,31 +26,41 @@ public class ProductAvailibilityTester
 		int result;
 		int hold;
 		String sub;
+		String holdString;
 		
 		inputLine="";
 		result=0;
+		holdString="";
 		
 		
 		try
 		{
-			portal=new URL("http://api.target.com/v2/location?productId="+productId+"&storeId="+storeId+"&key=[J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF]");
+			portal=new URL("http://api.target.com/v2/location/json?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+			System.out.println(portal);
 			portalConnection=portal.openConnection();
-			
 			
 			input= new BufferedReader(new InputStreamReader(portalConnection.getInputStream()));
 			
-			System.out.println("here");
+			
+			
 			
 			inputLine= input.readLine();
+			
 			while(inputLine!=null)
 			{
-				inputLine=inputLine + input.readLine();
+				inputLine= input.readLine();
+				
+				holdString=holdString+inputLine;
 			}
 			input.close();
 			
-			hold= inputLine.indexOf("OnHandQuantity")+17;
 			
-			sub=inputLine.substring(hold);
+			hold= holdString.indexOf("OnHandQuantity")+17;
+			
+			
+			sub=holdString.substring(hold);
+			
+			
 			
 			result=Integer.parseInt(sub.substring(0,sub.indexOf(",")));
 			
