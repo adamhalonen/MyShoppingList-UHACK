@@ -160,6 +160,7 @@ public class Util {
     public String[][] closestStores(String address,int range)
     {
     	double[] geoCord = new double[2];
+    	String theDistance;
     	int i = 0;
     	int j = 0;
     	String[][] stores = new String[10][6];
@@ -188,7 +189,8 @@ public class Util {
     		j++;
     		stores[i][j] = getTelephone();
     		j++;
-    		stores[i][j] = getDistance();
+    		theDistance = getDistance();
+    		stores[i][j] = theDistance.substring(0,theDistance.indexOf(".")+3);
     		j++;
     		stores[i][j] = getTotalProducts(Integer.parseInt(stores[i][0]), driver.getListPanel().getProducts());
     		i++;	
@@ -341,8 +343,8 @@ public class Util {
     	String id;
     	
     	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+26);
-    	this.storeAddress = this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
-    	return this.storeAddress.substring(0, this.storeAddress.indexOf(".")+2);
+    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    	
     }
     private String getTotalProducts(int storeID,String[] products)
     {
