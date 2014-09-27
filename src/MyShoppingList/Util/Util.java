@@ -130,6 +130,8 @@ public class Util {
 		int lng;
 		String latString;
 		String lngString;
+		
+		address = addPluses(address);
 		try
     	{
             URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address="+ address +"&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
@@ -165,6 +167,8 @@ public class Util {
     	String theDistance;
     	int i = 0;
     	int j = 0;
+    	
+    	address = addPluses(address);
     	String[][] stores = new String[10][6];
     	
     	
@@ -313,7 +317,8 @@ public class Util {
     private String getStoreId(String address)
     {
     	String id;
-    
+    	
+    	address = addPluses(address);
     	address = address.substring(address.indexOf("ID")+3);
     	
     	return address.substring(0,address.indexOf('<'));
@@ -364,6 +369,7 @@ public class Util {
     private String getProductID(String input)
     {
     	String result = "";
+    	input = addPluses(input);
     	
     	try
     	{
@@ -391,6 +397,8 @@ public class Util {
     public ImageIcon getDirections(String addressOrigin, String destination)
     {
     	String result = "";
+    	addressOrigin = addPluses(addressOrigin);
+    	destination = addPluses(destination);
     	
     	try
     	{
@@ -472,6 +480,23 @@ public class Util {
 		
 		return result;
 		
+	}
+	
+	private String addPluses(String string)
+	{
+		String result = "";
+		for(int i = 0; i < string.length(); i++)
+		{
+			if(string.charAt(i) == ' ')
+			{
+				result = result + "+";
+			}
+			else
+			{
+				result = result + string.charAt(i);
+			}
+		}
+		return result;
 	}
 
 }
