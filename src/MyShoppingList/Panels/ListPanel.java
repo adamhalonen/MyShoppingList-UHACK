@@ -95,7 +95,8 @@ public class ListPanel extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("findStore"))
 		{
-			
+			setVisible(false);
+			driver.getStoreResults().setVisible(true);
 		}
 		else if(cmd.equalsIgnoreCase("back"))
 		{
