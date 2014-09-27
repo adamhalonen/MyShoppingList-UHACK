@@ -82,15 +82,18 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		
 		textArea = new JTextArea();
 		textArea.setBounds(0, 0, 291, 363);
+		textArea.setLineWrap(true);
 		panel_1.add(textArea);
 		textArea.setEditable(false);
 		
 		textArea_1 = new JTextArea();
 		textArea_1.setBounds(295, 0, 150, 363);
+		textArea_1.setLineWrap(true);
 		panel_1.add(textArea_1);
 		
 		textArea_2 = new JTextArea();
 		textArea_2.setBounds(449, 0, 147, 363);
+		textArea_2.setLineWrap(true);
 		panel_1.add(textArea_2);
 		
 		panel = new JPanel();
@@ -109,20 +112,24 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		lblPhoneNumberaddress.setText(addressPhoneNumber);
 		System.out.println(driver.getStoreResults().getSelectedStoreId());
 		String[][] prodInfo = util.getProductInfo(driver.getListPanel().getProducts(), driver.getStoreResults().getSelectedStoreId());
-		items = prodInfo[0];
-		prices = prodInfo[1];
-		quantities = prodInfo[2];
+		items = new String[prodInfo.length];
+		prices = new String[prodInfo.length];
+		quantities = new String[prodInfo.length];
+		
 		for(int i = 0; i < products.length; i++)
 		{
+			items[i] = prodInfo[i][0];
 			textArea.setText(textArea.getText()+items[i]+"\n");
 		}
 		for(int i = 0; i < products.length; i++)
 		{
-			textArea_1.setText(textArea.getText()+prices[i]+"\n");
+			prices[i] = prodInfo[i][1];
+			textArea_1.setText(textArea_1.getText()+prices[i]+"\n");
 		}
 		for(int i = 0; i < products.length; i++)
 		{
-			textArea_2.setText(textArea.getText()+quantities[i]+"\n");
+			quantities[i] = prodInfo[i][2];
+			textArea_2.setText(textArea_2.getText()+quantities[i]+"\n");
 		}
 		
 	}
@@ -143,6 +150,8 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 			setVisible(false);
 			driver.getStoreResults().setVisible(true);
 			textArea.setText("");
+			textArea_1.setText("");
+			textArea_2.setText("");
 			lblDirectionsimage.setIcon(null);
 		}
 	}
