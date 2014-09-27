@@ -24,6 +24,7 @@ public class AddressPanel extends JPanel implements ActionListener
 	private JLabel lblState;
 	private JLabel lblMileRadius;
 	private JButton btnSubmit;
+	private String address;
 	
 	public AddressPanel(Driver d)
 	{
@@ -80,8 +81,18 @@ public class AddressPanel extends JPanel implements ActionListener
 	{
 		if(e.getActionCommand().equalsIgnoreCase("submit"))
 		{
-			setVisible(false);
-			driver.getListPanel().setVisible(true);
+			this.address="";
+			
+			System.out.println(textField.getText());
+			
+			if(!textField.getText().equals("") && !textField_1.getText().equals("") && !textField_2.getText().equals("") && !textField_4.getText().equals(""))
+			{
+				System.out.println("hello");
+				setVisible(false);
+				driver.getListPanel().setVisible(true);				
+				this.address=textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_4.getText();
+			}
+			
 		}
 	}
 }
