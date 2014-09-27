@@ -25,6 +25,7 @@ public class AddressPanel extends JPanel implements ActionListener
 	private JLabel lblMileRadius;
 	private JButton btnSubmit;
 	private String address;
+	private int range;
 	
 	public AddressPanel(Driver d)
 	{
@@ -106,7 +107,9 @@ public class AddressPanel extends JPanel implements ActionListener
 				for(int i = 0; i < a.length; i++)
 				{
 					address += a[i] + "+";
-				}					
+				}
+				
+				this.setRange(Integer.parseInt(this.textField_4.getText()));
 			}
 			//returns string in format Address,State,MileRadius,Range
 			
@@ -115,5 +118,7 @@ public class AddressPanel extends JPanel implements ActionListener
 	}
 	
 	public String getAddress(){return this.address;}
-	public int getRange(){return Integer.parseInt(this.textField_4.getText());}
+	public int getRange(){return this.range;}
+	public void setRange(int range){this.range=range;}
+	public void setAddress(String address){this.address=address;}
 }

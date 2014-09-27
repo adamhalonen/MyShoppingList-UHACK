@@ -2,7 +2,9 @@ package MyShoppingList.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -109,10 +111,10 @@ public class MenuBar extends JPanel implements ActionListener
 					pw.println("City: " + str.substring(hold+2,hold2-1));
 				
 					hold=str.indexOf(",",hold2);
-					System.out.println(hold);
+					
 					pw.println("State: " + str.substring(hold+2,str.length()-1));
 					
-					pw.println("Mile Radius: " + this.driver.getAddressPanel().getRange());
+					pw.println("MileRadius: " + this.driver.getAddressPanel().getRange());
 				}
 				
 				
@@ -132,7 +134,38 @@ public class MenuBar extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("load"))
 		{
+			File file;
+			BufferedReader br;
+			String record;
+			String result;
+			int count;
 			
+			count=0;
+			file=new File("preferences.txt");
+			result="";
+			
+			try
+			{
+				br=new BufferedReader(new FileReader(file));
+				
+				record=br.readLine();
+				
+				while(record!=null)
+				{
+					result=result+record.substring(record.indexOf(" "))+",+";
+					record=br.readLine();
+				}
+				
+				this.driver.getAddressPanel().setAddress(result.substring(0,result.indexOf("MileRadius:")-2));
+				
+				this.driver.getAddressPanel().setRange(result.substring());
+				
+				br.close();
+			}
+			catch(Exception ioe)
+			{
+				ioe.printStackTrace();
+			}
 		}
 		else if(cmd.equalsIgnoreCase("quit"))
 		{
