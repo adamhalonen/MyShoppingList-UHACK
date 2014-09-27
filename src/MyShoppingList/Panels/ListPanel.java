@@ -110,20 +110,20 @@ public class ListPanel extends JPanel implements ActionListener
 	public void setProducts()
 	{
 		products = new String[listModel.size()];
+		System.out.println(listModel.size());
 		for(int i = 0; i < listModel.getSize(); i++)
 		{
-			System.out.println(listModel.getElementAt(i));
 			products[i] = (String) listModel.getElementAt(i);
-			System.out.println(products[i]);
 		}
 	}
 	public void clearProducts()
 	{
 		setProducts();
+		System.out.println(getProducts().length);
 		for(int i = 0;i< getProducts().length;i++)
 		{
 			getProducts()[i] = "";
-			listModel.removeElement(i);
+			listModel.removeElementAt(0);
 		}
 	}
 }
