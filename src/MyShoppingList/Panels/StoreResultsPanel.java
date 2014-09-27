@@ -122,30 +122,15 @@ public class StoreResultsPanel extends JPanel implements MouseListener , ActionL
 		String[][] rawStores;
 		Util util = new Util(driver);
 		String[] storeInfo;
-		String longest = "";
 		String addition = "";
 		rawStores = util.closestStores(driver.getAddressPanel().getAddress(),driver.getAddressPanel().getRange());
 		storeInfo = new String[rawStores.length];
-		for(int i = 0;i<10;i++)
-		{
-			if(rawStores[i][2].length() > longest.length())
-			{
-				longest = rawStores[i][2];
-			}
-			
-		}
-		longest = longest + " ";
+
+		
+		
 		for(int i = 0; i < rawStores.length; i++)
 		{
-				if(rawStores[i][2].length() < longest.length())
-				{
-					while(rawStores[i][2].length() < longest.length())
-					{
-						rawStores[i][2] = rawStores[i][2] + " ";
-					}
-					
-				}
-				storeInfo[i] = rawStores[i][2] /*+ "  "*/ + rawStores[i][3] + "  " + rawStores[i][4];
+				storeInfo[i] = rawStores[i][2] + "           " + rawStores[i][3] + "                             " + rawStores[i][4];
 		}
 		
 		for(int i = 0; i < storeInfo.length; i++)
