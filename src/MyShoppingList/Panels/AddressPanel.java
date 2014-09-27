@@ -90,11 +90,12 @@ public class AddressPanel extends JPanel implements ActionListener
 				driver.getListPanel().setVisible(true);				
 				this.address=textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_4.getText();
 			}
-			//returns string in format Address,State,MileRadius
+			//returns string in format Address,State,MileRadius,Range
 			
 		}
 		
 	}
 	
 	public String getAddress(){return this.address;}
+	public int getRange(){return Integer.parseInt(this.textField_4.getText());}
 }
