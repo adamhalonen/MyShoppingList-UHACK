@@ -92,6 +92,7 @@ public class ListPanel extends JPanel implements ActionListener
 			driver.getStoreResults().setVisible(true);
 			
 			//Calculate products
+			products = new String[listModel.size()];
 			for(int i = 0; i < listModel.getSize(); i++)
 			{
 				products[i] = (String) listModel.getElementAt(i);
