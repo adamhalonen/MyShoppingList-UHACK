@@ -94,7 +94,14 @@ public class AddressPanel extends JPanel implements ActionListener
 					address += a[i] + "+";
 				}
 				address = address.substring(0,address.length()-1);
-				this.address+=",+"+textField_1.getText()+",+"+textField_2.getText();
+				this.address+=",+";
+				a = textField_1.getText().split(" ");
+				for(int i = 0; i < a.length; i++)
+				{
+					address += a[i] + "+";
+				}		
+				
+				address+=",+"+textField_2.getText();
 			}
 			//returns string in format Address,State,MileRadius,Range
 			
