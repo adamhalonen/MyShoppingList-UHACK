@@ -190,16 +190,76 @@ public class Util {
     	return stores;
     }
     
-    public String[][] getProductInfo(String[] products)
+    public String[][] getProductInfo(String[] products,String storeID)
     {
     	String[][] productInfo = new String[products.length][3];
     	
-    	
-    	
+    	for(int i = 0;i < products.length;i++)
+    	{
+    		String productID = getProductID(products[i]);
+    		int j = 0;
+    		productInfo[i][j] = getProductName(productID);
+    		j++;
+    		productInfo[i][j] = getPrice(productID);
+    		j++;
+    		productInfo[i][j] = ((Double)getProductStock(Integer.parseInt(storeID), productID)).toString();
+    	}
     	
     	return productInfo;
     	
     	
+    }
+
+    
+    private String closestStoreString(double[] latlng, int range)
+    {
+    	String result = "";
+    	try
+    	{
+            URL oracle = new URL("http://api.target.com/v2/store?nearby="+latlng[0]+","+latlng[1]+"&range="+range+"&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+            {
+                result = result + inputLine;
+            }
+            in.close();	
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	return result;
+    }
+    
+    private String getProductName(String productID)
+    {
+    	String result = "";
+    	try
+    	{
+            URL oracle = new URL("https://api.target.com/v2/products/search?searchTerm="+productID+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+            {
+                result = result + inputLine;
+            }
+            in.close();	
+
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+        	
+    	result = result.substring(result.indexOf("description")+15);
+    	result = result.substring(0,result.indexOf('"'));
+    	
+    	return result;
     }
     private String getPrice(String productID)
     {
@@ -229,29 +289,6 @@ public class Util {
     	
     	return result;
     }
-    
-    private String closestStoreString(double[] latlng, int range)
-    {
-    	String result = "";
-    	try
-    	{
-            URL oracle = new URL("http://api.target.com/v2/store?nearby="+latlng[0]+","+latlng[1]+"&range="+range+"&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
-    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
-    		URLConnection yc = oracle.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) 
-            {
-                result = result + inputLine;
-            }
-            in.close();	
-    	}
-    	catch(Exception e)
-    	{
-    		e.printStackTrace();
-    	}
-    	return result;
-    }
     private String getStoreId()
     {
     	String id;
@@ -259,6 +296,15 @@ public class Util {
     	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID")+3);
     	
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    	
+    }
+    private String getStoreId(String address)
+    {
+    	String id;
+    
+    	address = address.substring(address.indexOf("ID")+3);
+    	
+    	return address.substring(0,address.indexOf('<'));
     	
     }
     private String getStoreName()
@@ -302,7 +348,7 @@ public class Util {
 
  
 
-    public String getProductID(String input)
+    private String getProductID(String input)
     {
     	String result = "";
     	
