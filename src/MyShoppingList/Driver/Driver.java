@@ -85,4 +85,5 @@ public class Driver extends JFrame
 	
 	public AboutPanel getAboutPanel(){return aboutPanel;}
 	public ListPanel getListPanel(){return listPanel;}
+	public AddressPanel getAddressPanel(){return addressPanel;}
 }

@@ -56,6 +56,7 @@ public class MenuBar extends JPanel implements ActionListener
 		JMenuItem mntmClear = new JMenuItem("Clear");
 		mntmClear.setActionCommand("clear");
 		mntmClear.addActionListener(this);
+		mntmClear.setEnabled(false);
 		mnEdit.add(mntmClear);
 		
 		JMenu mnHelp = new JMenu("Help");
