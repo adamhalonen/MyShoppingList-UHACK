@@ -62,7 +62,6 @@ public class MenuBar extends JPanel implements ActionListener
 		JMenuItem mntmClear = new JMenuItem("Clear");
 		mntmClear.setActionCommand("clear");
 		mntmClear.addActionListener(this);
-		mntmClear.setEnabled(false);
 		mnEdit.add(mntmClear);
 		
 		JMenu mnHelp = new JMenu("Help");
@@ -158,7 +157,7 @@ public class MenuBar extends JPanel implements ActionListener
 				
 				this.driver.getAddressPanel().setAddress(result.substring(0,result.indexOf("MileRadius:")-2));
 				
-				this.driver.getAddressPanel().setRange(result.substring());
+				//this.driver.getAddressPanel().setRange(result.substring(0));
 				
 				br.close();
 			}
@@ -173,7 +172,7 @@ public class MenuBar extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("clear"))
 		{
-			
+			driver.getListPanel().clearProducts();
 		}
 		else if(cmd.equalsIgnoreCase("about"))
 		{

@@ -92,11 +92,7 @@ public class ListPanel extends JPanel implements ActionListener
 			driver.getStoreResults().setVisible(true);
 			
 			//Calculate products
-			products = new String[listModel.size()];
-			for(int i = 0; i < listModel.getSize(); i++)
-			{
-				products[i] = (String) listModel.getElementAt(i);
-			}
+			setProducts();
 			driver.getStoreResults().setUp();
 		}
 		else if(cmd.equalsIgnoreCase("back"))
@@ -110,5 +106,24 @@ public class ListPanel extends JPanel implements ActionListener
 	{
 		//System.out.println(products[0]);
 		return products;
+	}
+	public void setProducts()
+	{
+		products = new String[listModel.size()];
+		for(int i = 0; i < listModel.getSize(); i++)
+		{
+			System.out.println(listModel.getElementAt(i));
+			products[i] = (String) listModel.getElementAt(i);
+			System.out.println(products[i]);
+		}
+	}
+	public void clearProducts()
+	{
+		setProducts();
+		for(int i = 0;i< getProducts().length;i++)
+		{
+			getProducts()[i] = "";
+			listModel.removeElement(i);
+		}
 	}
 }
