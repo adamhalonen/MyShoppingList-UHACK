@@ -21,10 +21,12 @@ public class StoreResultsPanel extends JPanel
 	
 	public StoreResultsPanel(Driver d)
 	{
+		setOpaque(false);
 		driver = d;
 		
 		setBounds(0,0,800,600);
 		setLayout(null);
+		setVisible(false);
 		
 		JPanel panel = new JPanel();
 		panel.setBackground(Color.WHITE);
@@ -97,10 +99,7 @@ public class StoreResultsPanel extends JPanel
 		storeInfo = new String[rawStores.length];
 		for(int i = 0; i < rawStores.length; i++)
 		{
-			for(int j = 0; j < rawStores[i].length; j++)
-			{
-				storeInfo[i] += rawStores[i][j] + "\t\t";
-			}
+				storeInfo[i] = rawStores[i][1] + "\t" + rawStores[i][2] + "\t" + rawStores[i][3] + "\t" + rawStores[i][4];
 		}
 		
 		for(int i = 0; i < storeInfo.length; i++)

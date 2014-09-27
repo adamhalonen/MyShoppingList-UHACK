@@ -79,6 +79,8 @@ public class Driver extends JFrame
 		
 		contentPane.add(listPanel);
 		
+		contentPane.add(storeResultsPanel);
+		
 		JLabel bg = new JLabel();
 		bg.setBounds(0, 0, 794, 565);
 		bg.setIcon(new ImageIcon("res/bg.png"));
