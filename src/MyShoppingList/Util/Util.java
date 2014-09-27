@@ -6,19 +6,6 @@ public class Util {
     private int array[];
     private int length;
     
-    public static void main(String a[])
-    {
-         
-        Util sorter = new Util();
-        String[] input = {"Nick","Nack"};
-        sorter.sortAlphabetically(input);
-        for(int i = 0; i < input.length; i++)
-        {
-            System.out.println(input[i]);
-        }
-    }
-
- 
     public int sort(int[] inputArray) throws IllegalArgumentException
     {
          
