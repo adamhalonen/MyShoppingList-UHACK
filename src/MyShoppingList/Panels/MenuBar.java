@@ -84,7 +84,7 @@ public class MenuBar extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("save"))
 		{
-			String str= "4403 W. Madero Dr.,234,20";
+			String str= this.driver.getAddressPanel().getAddress();
 			File file;
 			PrintWriter pw;
 			int hold;
@@ -98,20 +98,21 @@ public class MenuBar extends JPanel implements ActionListener
 			{
 				pw=new PrintWriter(new FileWriter(file));
 				
+				if(!str.equals(""))
+				{
+					hold=str.indexOf(",");
 				
-				hold=str.indexOf(",");
+					pw.println("Address: " + str.substring(0,hold));
 				
-				pw.println("Address: " + str.substring(0,hold));
+					hold2=str.indexOf(",",hold+1);
 				
-				hold2=str.indexOf(",",hold+1);
+					pw.println("City: " + str.substring(hold+1,hold2));
 				
-				pw.println("Store ID: " + str.substring(hold+1,hold2));
-				
-				
-				pw.println("Mile Radius: " + str.substring(hold2+1));
-				
-				
-				
+					hold=str.indexOf(",",hold2+1);
+					pw.println("State: " + str.substring(hold2+1,hold));
+					
+					pw.println("Mile Radius: " + str.substring(hold+1));
+				}
 				
 				
 				pw.flush();
