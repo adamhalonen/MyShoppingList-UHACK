@@ -450,7 +450,7 @@ public class Util {
 		try
 		{
 			portal=new URL("http://api.target.com/v2/products/availability?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
-			//System.out.println(portal);
+			
 			portalConnection=portal.openConnection();
 			
 			input= new BufferedReader(new InputStreamReader(portalConnection.getInputStream()));
