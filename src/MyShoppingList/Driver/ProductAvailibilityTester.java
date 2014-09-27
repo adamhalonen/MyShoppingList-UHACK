@@ -19,6 +19,12 @@ public class ProductAvailibilityTester
 	
 	public static double getProductStock(int storeId, String productId)
 	{
+		/*
+		 * This method returns the amount of product in stock at a specified store
+		 * 
+		 * need proper store code and product code
+		 */
+		
 		URL portal;
 		URLConnection portalConnection;
 		String inputLine;
