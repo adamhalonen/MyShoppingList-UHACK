@@ -138,10 +138,15 @@ public class MenuBar extends JPanel implements ActionListener
 			String record;
 			String result;
 			int count;
+			String[] array;
+			String theAddress;
+			String theDistanceVariable;
 			
 			count=0;
 			file=new File("preferences.txt");
 			result="";
+			theAddress = "";
+			theDistanceVariable = "";
 			
 			try
 			{
@@ -151,13 +156,31 @@ public class MenuBar extends JPanel implements ActionListener
 				
 				while(record!=null)
 				{
-					result=result+record.substring(record.indexOf(" "))+",+";
+					result=result+record.substring(record.indexOf(" ")+1)+",+";
 					record=br.readLine();
 				}
 				
-				this.driver.getAddressPanel().setAddress(result.substring(0,result.indexOf("MileRadius:")-2));
+				result=result.substring(0,result.length()-2);
 				
-				//this.driver.getAddressPanel().setRange(result.substring(0));
+				array=result.split(",+");
+				
+				
+				for(int i = 0; i < 2; i++)
+				{
+					theAddress = theAddress + array[i]+",";
+				}
+					theAddress = theAddress + array[2];
+					theDistanceVariable = array[3];
+				
+				//System.out.println(theAddress);
+				//System.out.println(Integer.parseInt(theDistanceVariable));
+				
+				this.driver.getAddressPanel().setAddress(theAddress);
+				
+				this.driver.getAddressPanel().setRange(Integer.parseInt(theDistanceVariable));
+				
+				//System.out.println(this.driver.getAddressPanel().getAddress());
+				//System.out.println(this.driver.getAddressPanel().getRange());
 				
 				br.close();
 			}

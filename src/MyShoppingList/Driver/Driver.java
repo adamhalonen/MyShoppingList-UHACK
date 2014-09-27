@@ -91,5 +91,5 @@ public class Driver extends JFrame
 	public ListPanel getListPanel(){return listPanel;}
 	public AddressPanel getAddressPanel(){return addressPanel;}
 	public StoreResultsPanel getStoreResults(){return storeResultsPanel;}
-	public MenuBar getMenuBar(){return this.menuBar;}
+	//public MenuBar getMenuBar(){return this.menuBar;}
 }
