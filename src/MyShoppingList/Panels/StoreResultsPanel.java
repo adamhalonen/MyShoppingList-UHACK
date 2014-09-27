@@ -22,6 +22,7 @@ public class StoreResultsPanel extends JPanel implements MouseListener , ActionL
 	private DefaultListModel stores;
 	private JScrollPane scrollPane;
 	private JLabel[] labels = new JLabel[10];
+	private String[][] rawStores;
 	
 	//Labels
 	private JLabel label;
@@ -119,7 +120,6 @@ public class StoreResultsPanel extends JPanel implements MouseListener , ActionL
 	
 	public void setUp()
 	{
-		String[][] rawStores;
 		Util util = new Util(driver);
 		String[] storeInfo;
 		String addition = "";
@@ -146,43 +146,43 @@ public class StoreResultsPanel extends JPanel implements MouseListener , ActionL
 		
 		if(e.getSource().equals(label))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[1][2],rawStores[1][3] + " | " + rawStores[1][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_1))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[2][2],rawStores[2][3] + " | " + rawStores[2][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_2))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[3][2],rawStores[3][3] + " | " + rawStores[3][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_3))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[4][2],rawStores[4][3] + " | " + rawStores[4][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_4))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[5][2],rawStores[5][3] + " | " + rawStores[5][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_5))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[6][2],rawStores[6][3] + " | " + rawStores[6][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_6))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[7][2],rawStores[7][3] + " | " + rawStores[7][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_7))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[8][2],rawStores[8][3] + " | " + rawStores[8][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_8))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[9][2],rawStores[9][3] + " | " + rawStores[9][4], driver.getListPanel().getProducts());
 		}
 		else if(e.getSource().equals(label_9))
 		{
-			
+			driver.getProductAvailability().setLabelsAndProducts(rawStores[0][2],rawStores[0][3] + " | " + rawStores[0][4], driver.getListPanel().getProducts());
 		}
 	}
 
