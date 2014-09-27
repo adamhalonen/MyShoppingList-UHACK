@@ -10,13 +10,8 @@ import java.net.URLConnection;
 public class ProductAvailibilityTester 
 {
 
-	public static void main(String[] args) 
-	{
-		
-		System.out.println(getProductStock(694,"070-09-0141"));
-
-	}
 	
+<<<<<<< HEAD
 	public static double getProductStock(int storeId, String productId)
 	{
 		/*
@@ -81,4 +76,6 @@ public class ProductAvailibilityTester
 		
 	}
 
+=======
+>>>>>>> origin/master
 }

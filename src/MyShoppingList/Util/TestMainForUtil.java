@@ -41,6 +41,11 @@ public class TestMainForUtil {
 			System.out.println(util.getStringArray()[i]);
 		}
 	*/
+		Util util = new Util();
+		
+		util.closestStores("2115+Summit+Ave,+St.+Paul,+MN");
+		
+		System.out.println();
 	}
 	
 }
