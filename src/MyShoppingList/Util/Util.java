@@ -246,29 +246,33 @@ public class Util {
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
 
-    
-/*    
-    private void URLConnectionTest ()
+    public String getProductID(String input)
     {
-    	//JSONString jread;
+    	String result = "";
+    	
     	try
     	{
-            URL oracle = new URL("http://api.target.com/v2/products/availability?productId=070-09-0141&storeId=694&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
-            URLConnection yc = oracle.openConnection();
-            BufferedReader in = new BufferedReader(new InputStreamReader(
-                                        yc.getInputStream()));
+            URL oracle = new URL("https://api.target.com/v2/products/search?searchTerm="+input+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) 
-                System.out.println(inputLine);
+            {
+                result = result + inputLine;
+            }
             in.close();	
     	}
     	catch(Exception e)
     	{
     		e.printStackTrace();
     	}
-
+    	
+    	result = result.substring(result.indexOf("DPCI")+8);
+    	result = result.substring(0,result.indexOf('"'));
+    	
+    	return result;
     }
-*/
 	public double getProductStock(int storeId, String productId)
 	{
 		/*
@@ -294,7 +298,7 @@ public class Util {
 		try
 		{
 			portal=new URL("http://api.target.com/v2/products/availability?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
-			System.out.println(portal);
+			//System.out.println(portal);
 			portalConnection=portal.openConnection();
 			
 			input= new BufferedReader(new InputStreamReader(portalConnection.getInputStream()));
