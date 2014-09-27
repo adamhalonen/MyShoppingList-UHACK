@@ -1,5 +1,14 @@
 package MyShoppingList.Util;
 
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.net.URLConnection;
+
+import org.json.JSONString;
+
 public class Util {
 
 
@@ -90,5 +99,27 @@ public class Util {
          } 
         
         return 0;
+    }
+    
+    
+    private void URLConnectionTest ()
+    {
+    	//JSONString jread;
+    	try
+    	{
+            URL oracle = new URL("http://api.target.com/v2/products/availability?productId=070-09-0141&storeId=694&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+            URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(
+                                        yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+                System.out.println(inputLine);
+            in.close();	
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+
     }
 }
