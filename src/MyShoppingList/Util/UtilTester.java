@@ -4,7 +4,7 @@ public class UtilTester {
 
 	public static void main(String[] args) {
 		Util util = new Util();
-		String[] products = {"men's+levi+jeans","soap","cup"};
+		String[] products = {"men's+levi+jeans+30x32","aveeda+men+shampoo","cup"};
 		String[][] productInfo = util.getProductInfo(products, "1375");
 		
 		for(int i = 0 ;i < 3;i++)
