@@ -13,17 +13,17 @@ public class ProductAvailibilityTester
 	public static void main(String[] args) 
 	{
 		
-		getProductStock(694,"070-09-0141");
+		System.out.println(getProductStock(694,"070-09-0141"));
 
 	}
 	
-	public static void getProductStock(int storeId, String productId)
+	public static double getProductStock(int storeId, String productId)
 	{
 		URL portal;
 		URLConnection portalConnection;
 		String inputLine;
 		BufferedReader input;
-		int result;
+		double result;
 		int hold;
 		String sub;
 		String holdString;
@@ -35,7 +35,7 @@ public class ProductAvailibilityTester
 		
 		try
 		{
-			portal=new URL("http://api.target.com/v2/location/json?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+			portal=new URL("http://api.target.com/v2/products/availability?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
 			System.out.println(portal);
 			portalConnection=portal.openConnection();
 			
@@ -48,22 +48,20 @@ public class ProductAvailibilityTester
 			
 			while(inputLine!=null)
 			{
-				inputLine= input.readLine();
-				
 				holdString=holdString+inputLine;
+				inputLine= input.readLine();
 			}
 			input.close();
 			
-			
-			hold= holdString.indexOf("OnHandQuantity")+17;
+
+			hold= holdString.indexOf("OnHandQuantity")+15;
 			
 			
 			sub=holdString.substring(hold);
 			
 			
 			
-			result=Integer.parseInt(sub.substring(0,sub.indexOf(",")));
-			
+			result=Double.parseDouble(sub.substring(0,sub.indexOf("<")));		
 			
 			
 			
@@ -72,6 +70,8 @@ public class ProductAvailibilityTester
 		{
 			System.out.println(e.getStackTrace());
 		}
+		
+		return result;
 		
 	}
 
