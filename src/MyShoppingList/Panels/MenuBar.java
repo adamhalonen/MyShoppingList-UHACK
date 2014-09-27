@@ -154,6 +154,8 @@ public class MenuBar extends JPanel implements ActionListener
 			String theDistanceVariable;
 			boolean check=false;
 			
+			this.driver.getListPanel().clearProducts();
+			
 			count=0;
 			file=new File("preferences.txt");
 			result="";
@@ -188,8 +190,7 @@ public class MenuBar extends JPanel implements ActionListener
 				
 				for(int i=1; i<array2.length; i++)
 				{
-					System.out.println(array2[i]);
-					//holds values josh
+					this.driver.getListPanel().getListModel().addElement(array2[i]);
 				}
 				
 				
@@ -222,6 +223,7 @@ public class MenuBar extends JPanel implements ActionListener
 			{
 				ioe.printStackTrace();
 			}
+			System.out.println(driver.getAddressPanel().getAddress());
 		}
 		else if(cmd.equalsIgnoreCase("quit"))
 		{

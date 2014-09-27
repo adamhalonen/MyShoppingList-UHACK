@@ -135,4 +135,8 @@ public class ListPanel extends JPanel implements ActionListener
 			listModel.removeElementAt(0);
 		}
 	}
+	public DefaultListModel getListModel()
+	{
+		return this.listModel;
+	}
 }
