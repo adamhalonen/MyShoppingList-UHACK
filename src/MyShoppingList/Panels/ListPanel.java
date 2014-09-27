@@ -21,7 +21,8 @@ public class ListPanel extends JPanel implements ActionListener
 	private static final long serialVersionUID = 1L;
 	private Driver driver;
 	private JTextField txtItems;
-	private DefaultListModel listModel;
+	private DefaultListModel<String> listModel;
+	private String[] products;
 	
 	public ListPanel(Driver d)
 	{
@@ -60,14 +61,6 @@ public class ListPanel extends JPanel implements ActionListener
 		list = new JList(listModel);
 		list.setSelectedIndex(0);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-		list.addListSelectionListener(new ListSelectionListener()
-		{
-
-			public void valueChanged(ListSelectionEvent e)
-			{
-				
-			}
-		});
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(91, 126, 569, 361);
@@ -97,6 +90,12 @@ public class ListPanel extends JPanel implements ActionListener
 		{
 			setVisible(false);
 			driver.getStoreResults().setVisible(true);
+			
+			//Calculate products
+			for(int i = 0; i < listModel.getSize(); i++)
+			{
+				products[i] = (String) listModel.getElementAt(i);
+			}
 		}
 		else if(cmd.equalsIgnoreCase("back"))
 		{
@@ -104,4 +103,6 @@ public class ListPanel extends JPanel implements ActionListener
 			driver.getAddressPanel().setVisible(true);
 		}
 	}
+	
+	public String[] getProducts(){return products;}
 }
