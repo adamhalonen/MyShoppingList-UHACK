@@ -341,7 +341,8 @@ public class Util {
     	String id;
     	
     	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+26);
-    	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    	this.storeAddress = this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
+    	return this.storeAddress.substring(0, this.storeAddress.indexOf(",")+2);
     }
     private String getTotalProducts(int storeID,String[] products)
     {
