@@ -93,5 +93,8 @@ public class AddressPanel extends JPanel implements ActionListener
 			//returns string in format Address,State,MileRadius
 			
 		}
+		
 	}
+	
+	public String getAddress(){return this.address;}
 }
