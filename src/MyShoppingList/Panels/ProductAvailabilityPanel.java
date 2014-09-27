@@ -1,20 +1,21 @@
 package MyShoppingList.Panels;
 
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFrame;
+import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.SwingConstants;
 
 import MyShoppingList.Driver.Driver;
 import MyShoppingList.Util.Util;
@@ -28,7 +29,6 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 	private JButton btnBack;
 	private JLabel lblDirectionsimage;
 	private Util util = new Util();
-	private JPanel panel;
 	private JTextArea textArea_1;
 	private JTextArea textArea_2;
 	private JPanel panel_1;
@@ -36,6 +36,9 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 	private String[] items;
 	private String[] prices;
 	private String[] quantities;
+	private JLabel lblItems;
+	private JLabel lblPrices;
+	private JLabel lblQuantities;
 	
 	public ProductAvailabilityPanel(Driver d)
 	{
@@ -43,22 +46,18 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		setLayout(null);
 		driver = d;
 		
-		lblDirectionsimage = new JLabel("");
-		lblDirectionsimage.setBounds(0, 0, 800, 600);
-		add(lblDirectionsimage);
-		lblDirectionsimage.addMouseListener(this);
-		
 		setVisible(false);
 		setBounds(0,0,800,600);
 		
 		lblName = new JLabel("Name");
-		lblName.setBounds(95, 62, 371, 44);
+		lblName.setBounds(95, 45, 371, 44);
 		add(lblName);
 		
 		JButton btnDirections = new JButton("Directions");
-		btnDirections.setBounds(596, 115, 97, 25);
+		btnDirections.setBounds(590, 526, 97, 25);
 		btnDirections.addActionListener(this);
 		btnDirections.setActionCommand("directions");
+		btnDirections.setVisible(false);
 		add(btnDirections);
 		
 		btnBack = new JButton("Back");
@@ -67,8 +66,23 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		btnBack.setActionCommand("back");
 		add(btnBack);
 		
+		lblItems = new JLabel("Items");
+		lblItems.setHorizontalAlignment(SwingConstants.CENTER);
+		lblItems.setBounds(212, 124, 56, 16);
+		add(lblItems);
+		
+		lblPrices = new JLabel("Prices");
+		lblPrices.setHorizontalAlignment(SwingConstants.CENTER);
+		lblPrices.setBounds(430, 124, 56, 16);
+		add(lblPrices);
+		
+		lblQuantities = new JLabel("Quantities");
+		lblQuantities.setHorizontalAlignment(SwingConstants.CENTER);
+		lblQuantities.setBounds(572, 124, 82, 16);
+		add(lblQuantities);
+		
 		lblPhoneNumberaddress = new JLabel("Phone Number/Address");
-		lblPhoneNumberaddress.setBounds(95, 119, 173, 16);
+		lblPhoneNumberaddress.setBounds(95, 81, 173, 16);
 		add(lblPhoneNumberaddress);
 		
 		JScrollPane scrollPane = new JScrollPane();
@@ -96,18 +110,14 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		textArea_2.setLineWrap(true);
 		panel_1.add(textArea_2);
 		
-		panel = new JPanel();
-		panel.setOpaque(false);
-		panel.setBounds(0, 0, 800, 600);
-		add(panel);
-		
 		lblDirectionsimage = new JLabel("");
-		panel.add(lblDirectionsimage);
-		lblDirectionsimage.setBackground(Color.BLACK);
+		lblDirectionsimage.setBounds(0, 0, 800, 600);
+		add(lblDirectionsimage);
+		lblDirectionsimage.addMouseListener(this);
 	}
 	
 	public void setLabelsAndProducts(String name, String addressPhoneNumber, String[] products)
-	{
+	{	
 		lblName.setText(name);
 		lblPhoneNumberaddress.setText(addressPhoneNumber);
 		System.out.println(driver.getStoreResults().getSelectedStoreId());
