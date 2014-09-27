@@ -158,12 +158,33 @@ public class Util {
     public String[][] closestStores(String address)
     {
     	double[] geoCord = new double[2];
+    	String hold = "";
     	
     	this.storeAddress = address;
     	geoCord = findLatLng(storeAddress);
+    	hold = closestStoreString(geoCord,10);
     	
     	
     	return null;
+    }
+    private String closestStoreString(double[] latlng, int range)
+    {
+    	String result = "";
+    	try
+    	{
+            URL oracle = new URL("http://api.target.com/v2/store?nearby="+latlng[0]+","+latlng[1]+"&range="+range+"&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+            URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            String inputLine;
+            while ((inputLine = in.readLine()) != null) 
+                result = result + inputLine;
+            in.close();	
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	return result;
     }
     private String getStoreId()
     {
@@ -198,7 +219,7 @@ public class Util {
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID"+2));
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance"+8));
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
 

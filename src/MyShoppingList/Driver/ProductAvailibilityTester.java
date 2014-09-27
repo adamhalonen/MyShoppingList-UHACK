@@ -12,12 +12,11 @@ public class ProductAvailibilityTester
 
 	public static void main(String[] args) 
 	{
-		
-		getProductStock(694,"070-09-0141");
+		getProductStock("694","070-09-0141");
 
 	}
 	
-	public static void getProductStock(int storeId, String productId)
+	public static void getProductStock(String storeId, String productId)
 	{
 		URL portal;
 		URLConnection portalConnection;
@@ -26,51 +25,36 @@ public class ProductAvailibilityTester
 		int result;
 		int hold;
 		String sub;
-		String holdString;
-		
-		inputLine="";
-		result=0;
-		holdString="";
-		
 		
 		try
 		{
-			portal=new URL("http://api.target.com/v2/location/json?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
-			System.out.println(portal);
+			portal=new URL("http://api.target.com/v2/location?productId="+productId+"&storeId="+storeId+"&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
 			portalConnection=portal.openConnection();
 			
 			input= new BufferedReader(new InputStreamReader(portalConnection.getInputStream()));
 			
-			
-			
-			
 			inputLine= input.readLine();
-			
 			while(inputLine!=null)
 			{
-				inputLine= input.readLine();
-				
-				holdString=holdString+inputLine;
+				System.out.println(inputLine);
+				inputLine=inputLine + input.readLine();
 			}
 			input.close();
 			
+			hold= inputLine.indexOf("OnHandQuantity")+17;
 			
-			hold= holdString.indexOf("OnHandQuantity")+17;
-			
-			
-			sub=holdString.substring(hold);
-			
-			
+			sub=inputLine.substring(hold);
 			
 			result=Integer.parseInt(sub.substring(0,sub.indexOf(",")));
 			
+			System.out.println(result);
 			
 			
 			
 		}
 		catch(Exception e)
 		{
-			System.out.println(e.getStackTrace());
+			e.getStackTrace();
 		}
 		
 	}
