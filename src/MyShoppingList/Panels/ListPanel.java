@@ -81,6 +81,7 @@ public class ListPanel extends JPanel implements ActionListener
 		if(cmd.equalsIgnoreCase("add"))
 		{
 			if(!txtItems.getText().equals("")){listModel.addElement(txtItems.getText());}
+			txtItems.setText("");
 		}
 		else if(cmd.equalsIgnoreCase("remove"))
 		{
