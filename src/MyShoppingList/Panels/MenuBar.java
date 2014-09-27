@@ -117,6 +117,8 @@ public class MenuBar extends JPanel implements ActionListener
 					
 					pw.println("MileRadius: " + this.driver.getAddressPanel().getRange());
 					
+					pw.println("--Products--");
+					
 					for(int i=0; i<this.driver.getListPanel().getProducts().length;i++)
 					{
 						pw.println(this.driver.getListPanel().getProducts()[i]);
@@ -146,12 +148,16 @@ public class MenuBar extends JPanel implements ActionListener
 			String result;
 			int count;
 			String[] array;
+			String[] array2;
+			String productString;
 			String theAddress;
 			String theDistanceVariable;
+			boolean check=false;
 			
 			count=0;
 			file=new File("preferences.txt");
 			result="";
+			productString = "";
 			theAddress = "";
 			theDistanceVariable = "";
 			
@@ -165,9 +171,28 @@ public class MenuBar extends JPanel implements ActionListener
 				
 				while(record!=null)
 				{
-					result=result+record.substring(record.indexOf(" ")+1)+",+";
+					if(record.equals("--Products--")){check=true;}
+					if(check==false)
+					{	
+						result=result+record.substring(record.indexOf(" ")+1)+",+";
+					}
+					else
+					{
+						productString = productString + record+"\n";
+						//System.out.println(productString);
+					}
 					record=br.readLine();
 				}
+				
+				array2=productString.split("\n");
+				
+				for(int i=1; i<array2.length; i++)
+				{
+					System.out.println(array2[i]);
+					//holds values josh
+				}
+				
+				
 				
 				result=result.substring(0,result.length()-2);
 				
