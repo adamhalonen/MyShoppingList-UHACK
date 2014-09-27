@@ -6,6 +6,8 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.swing.ImageIcon;
+
 import MyShoppingList.Driver.Driver;
 
 //import org.json.JSONString;
@@ -385,6 +387,26 @@ public class Util {
     	result = result.substring(0,result.indexOf('"'));
     	
     	return result;
+    }
+    public ImageIcon getDirections(String addressOrigin, String destination)
+    {
+    	String result = "";
+    	
+    	try
+    	{
+    		URL oracle = new URL("http://api.target.com/v2/location/map/road/route/image/driving?origin="+ addressOrigin +"&destination="+ destination +"&optimize=time&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
+    		URLConnection yc = oracle.openConnection();
+            BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
+            
+            in.close();	
+            return new ImageIcon(oracle); 
+    	}
+    	catch(Exception e)
+    	{
+    		e.printStackTrace();
+    	}
+    	
+    	return null;   	
     }
 	private double getProductStock(int storeId, String productId)
 	{
