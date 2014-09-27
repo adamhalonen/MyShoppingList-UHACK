@@ -18,6 +18,7 @@ import MyShoppingList.Panels.AboutPanel;
 import MyShoppingList.Panels.AddressPanel;
 import MyShoppingList.Panels.ListPanel;
 import MyShoppingList.Panels.MenuBar;
+import MyShoppingList.Panels.ProductAvailabilityPanel;
 import MyShoppingList.Panels.StoreResultsPanel;
 
 public class Driver extends JFrame
@@ -30,6 +31,7 @@ public class Driver extends JFrame
 	private ListPanel listPanel = new ListPanel(this);
 	private AboutPanel aboutPanel = new AboutPanel(this);
 	private StoreResultsPanel storeResultsPanel = new StoreResultsPanel(this);
+	private ProductAvailabilityPanel prodAvlPanel = new ProductAvailabilityPanel();
 	
 	//Menu Bar 
 	private MenuBar menuBar = new MenuBar(this);
@@ -91,5 +93,7 @@ public class Driver extends JFrame
 	public ListPanel getListPanel(){return listPanel;}
 	public AddressPanel getAddressPanel(){return addressPanel;}
 	public StoreResultsPanel getStoreResults(){return storeResultsPanel;}
-	//public MenuBar getMenuBar(){return this.menuBar;}
+
+	public ProductAvailabilityPanel getProductAvailability(){return prodAvlPanel;}
+
 }
