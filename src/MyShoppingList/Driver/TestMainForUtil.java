@@ -10,7 +10,11 @@ public class TestMainForUtil {
 	{
 		String address;
 		String bigString ="";
-		address = "2115+Summit+Ave,+St.+Paul,+MN";
+		int lat;
+		int lng;
+		String latString;
+		String lngString;
+		address = "1600+Amphitheatre+Parkway,+Mountain+View,+CA";
     	try
     	{
             URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address="+ address +"&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
@@ -22,8 +26,14 @@ public class TestMainForUtil {
                 bigString = bigString + (inputLine);
             in.close();	
             
-            System.out.println(bigString.indexOf("lat"));
-            System.out.println(bigString.substring(bigString.indexOf("lat")+3, ));
+            lat = bigString.indexOf("lat")+7;
+            lng = bigString.indexOf("lng")+7;
+            
+            latString = bigString.substring(lat);
+            lngString = bigString.substring(lng);   
+            
+            System.out.println(latString.substring(0,latString.indexOf(',')));
+            System.out.println(lngString.substring(0,lngString.indexOf('}')));
             
     	}
     	catch(Exception e)
