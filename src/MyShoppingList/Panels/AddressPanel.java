@@ -87,8 +87,14 @@ public class AddressPanel extends JPanel implements ActionListener
 			if(!textField.getText().equals("") && !textField_1.getText().equals("") && !textField_2.getText().equals("") && !textField_4.getText().equals(""))
 			{
 				setVisible(false);
-				driver.getListPanel().setVisible(true);				
-				this.address=textField.getText()+","+textField_1.getText()+","+textField_2.getText()+","+textField_4.getText();
+				driver.getListPanel().setVisible(true);
+				String[] a = textField.getText().split(" ");
+				for(int i = 0; i < a.length; i++)
+				{
+					address += a[i] + "+";
+				}
+				address = address.substring(0,address.length()-1);
+				this.address+=",+"+textField_1.getText()+",+"+textField_2.getText();
 			}
 			//returns string in format Address,State,MileRadius,Range
 			

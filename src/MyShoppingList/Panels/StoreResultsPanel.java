@@ -13,6 +13,8 @@ public class StoreResultsPanel extends JPanel
 {
 	private static final long serialVersionUID = 1L;
 	private Driver driver;
+	private DefaultListModel stores;
+	private JScrollPane scrollPane;
 	
 	public StoreResultsPanel(Driver d)
 	{
@@ -24,10 +26,10 @@ public class StoreResultsPanel extends JPanel
 	
 	public void setUp()
 	{
-		DefaultListModel stores = new DefaultListModel();
+		stores = new DefaultListModel();
 		String[][] rawStores;
 		Util util = new Util(driver);
-		String storeInfo;
+		String storeInfo = "";
 		
 		rawStores = util.closestStores(driver.getAddressPanel().getAddress(),driver.getAddressPanel().getRange());
 		//stores = new String[rawStores.length];
@@ -39,6 +41,7 @@ public class StoreResultsPanel extends JPanel
 				storeInfo += rawStores[i][j] + "\t\t";
 			}
 			stores.addElement(storeInfo);
+			System.out.println(storeInfo);
 		}
 		
 		JList<String> list = new JList<String>(stores);
@@ -47,6 +50,8 @@ public class StoreResultsPanel extends JPanel
 		
 		JScrollPane scrollPane = new JScrollPane(list);
 		scrollPane.setBounds(99, 81, 596, 426);
+		scrollPane.setVisible(true);
 		add(scrollPane);
+		scrollPane.setViewportView(list);
 	}
 }
