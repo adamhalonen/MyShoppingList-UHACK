@@ -11,11 +11,16 @@ import java.net.URLConnection;
 
 public class Util {
 
-
-    private int array[];
+	private int[] intArray;
+    private String[] stringArray;
     private int length;
     
-    public int sort(int[] inputArray) throws IllegalArgumentException
+    
+    public Util()
+    {
+    	
+    }
+    public int sortIntegers(int[] inputArray) throws IllegalArgumentException
     {
          
         if (inputArray == null ) 
@@ -27,11 +32,13 @@ public class Util {
         	return -1;
         }
         
-        this.array = inputArray;
+        this.intArray = inputArray;
         length = inputArray.length;
         quickSort(0, length - 1);
         return 0;
     }
+    
+    
    
 
     private void quickSort(int lowerIndex, int higherIndex) 
@@ -39,15 +46,15 @@ public class Util {
          
         int i = lowerIndex;
         int j = higherIndex;
-        int pivot = array[lowerIndex+(higherIndex-lowerIndex)/2];
+        int pivot = intArray[lowerIndex+(higherIndex-lowerIndex)/2];
         while (i <= j)
         {
            
-            while (array[i] < pivot)
+            while (intArray[i] < pivot)
             {
                 i++;
             }
-            while (array[j] > pivot)
+            while (intArray[j] > pivot)
             {
                 j--;
             }
@@ -70,12 +77,12 @@ public class Util {
     } 
     private void exchangeNumbers(int i, int j) 
     {
-        int temp = array[i];
-        array[i] = array[j];
-        array[j] = temp;
+        int temp = intArray[i];
+        intArray[i] = intArray[j];
+        intArray[j] = temp;
     }
     
-    private int sortAlphabetically(String[] inputArray)
+    public int sortAlphabetically(String[] inputArray)
     {
         if (inputArray == null ) 
         {
@@ -97,11 +104,20 @@ public class Util {
                             inputArray [ j+1] = temp; 
                  } 
          } 
-        
+        this.stringArray = inputArray;
         return 0;
     }
+    public int[] getIntArray()
+    {
+    	return this.intArray;
+    }
     
+    public String[] getStringArray()
+    {
+    	return this.stringArray;
+    }
     
+/*    
     private void URLConnectionTest ()
     {
     	//JSONString jread;
@@ -122,10 +138,10 @@ public class Util {
     	}
 
     }
-    
-    private int[] findLatLng(String address)
+*/
+    private double[] findLatLng(String address)
     {
-    	int[] result = new int[2];
+    	double[] result = new double[2];
 		String bigString ="";
 		int lat;
 		int lng;
@@ -148,8 +164,8 @@ public class Util {
             latString = bigString.substring(lat);
             lngString = bigString.substring(lng);   
             
-            result[0] = Integer.parseInt(latString.substring(0,latString.indexOf(',')));
-            result[1] = Integer.parseInt(lngString.substring(0,lngString.indexOf('}')));
+            result[0] = Double.parseDouble(latString.substring(0,latString.indexOf(',')));
+            result[1] = Double.parseDouble(lngString.substring(0,lngString.indexOf('}')));
             
     	}
     	catch(Exception e)
@@ -159,4 +175,6 @@ public class Util {
 		
 		return result;
     }
+    
+    
 }
