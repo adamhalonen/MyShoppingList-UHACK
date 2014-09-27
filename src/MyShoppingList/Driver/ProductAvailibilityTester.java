@@ -12,16 +12,19 @@ public class ProductAvailibilityTester
 
 	public static void main(String[] args) 
 	{
-		// TODO Auto-generated method stub
+		getProductStock(694,"070-09-0141");
 
 	}
 	
-	public void getProductAvailibility(int storeId, String productId)
+	public static void getProductStock(int storeId, String productId)
 	{
 		URL portal;
 		URLConnection portalConnection;
 		String inputLine;
 		BufferedReader input;
+		int result;
+		int hold;
+		String sub;
 		
 		try
 		{
@@ -34,10 +37,19 @@ public class ProductAvailibilityTester
 			while(inputLine!=null)
 			{
 				System.out.println(inputLine);
-				inputLine=input.readLine();
+				inputLine=inputLine + input.readLine();
 			}
-			
 			input.close();
+			
+			hold= inputLine.indexOf("OnHandQuantity")+17;
+			
+			sub=inputLine.substring(hold);
+			
+			result=Integer.parseInt(sub.substring(0,sub.indexOf(",")));
+			
+			System.out.println(result);
+			
+			
 			
 		}
 		catch(Exception e)
