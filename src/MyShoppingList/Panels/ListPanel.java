@@ -116,13 +116,11 @@ public class ListPanel extends JPanel implements ActionListener
 	
 	public String[] getProducts()
 	{
-		//System.out.println(products[0]);
 		return products;
 	}
 	public void setProducts()
 	{
 		products = new String[listModel.size()];
-		System.out.println(listModel.size());
 		for(int i = 0; i < listModel.getSize(); i++)
 		{
 			products[i] = (String) listModel.getElementAt(i);
@@ -131,7 +129,6 @@ public class ListPanel extends JPanel implements ActionListener
 	public void clearProducts()
 	{
 		setProducts();
-		System.out.println(getProducts().length);
 		for(int i = 0;i< getProducts().length;i++)
 		{
 			getProducts()[i] = "";
