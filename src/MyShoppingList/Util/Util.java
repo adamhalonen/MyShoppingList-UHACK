@@ -158,26 +158,48 @@ public class Util {
     public String[][] closestStores(String address)
     {
     	double[] geoCord = new double[2];
-    	String hold = "";
-    	
-    	this.storeAddress = address;
-    	geoCord = findLatLng(storeAddress);
-    	hold = closestStoreString(geoCord,10);
+    	int i = 0;
+    	int j = 0;
+    	String[][] stores = new String[10][6];
     	
     	
-    	return null;
+    	geoCord = findLatLng(address);
+    	//System.out.println(geoCord[0] + " " + geoCord[1]);
+    	this.storeAddress = closestStoreString(geoCord,100);
+    	
+    	//System.out.println(this.storeAddress.indexOf("ID>"));
+    	while(this.storeAddress.indexOf("ID>")>0 && i < 10 && j < 5)
+    	{
+    		
+    		stores[i][j] = getStoreId();
+    		j++;
+    		stores[i][j] = getStoreName();
+    		j++;
+    		stores[i][j] = getStoreAddress();
+    		j++;
+    		stores[i][j] = getTelephone();
+    		j++;
+    		stores[i][j] = getDistance();
+    		i++;	
+    		j = 0;
+    	}
+    	
+    	return stores;
     }
     private String closestStoreString(double[] latlng, int range)
     {
     	String result = "";
     	try
     	{
-            URL oracle = new URL("http://api.target.com/v2/store?nearby="+latlng[0]+","+latlng[1]+"&range="+range+"&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF");
-            URLConnection yc = oracle.openConnection();
+            URL oracle = new URL("http://api.target.com/v2/store?nearby="+latlng[0]+","+latlng[1]+"&range="+range+"&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		//URL oracle = new URL("http://api.target.com/v2/store?nearby=44.976034,-93.270196&range=10&limit=100&locale=en-US&key=J5PsS2XGuqCnkdQq0Let6RSfvU7oyPwF&Header=application/json");
+    		URLConnection yc = oracle.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(yc.getInputStream()));
             String inputLine;
             while ((inputLine = in.readLine()) != null) 
+            {
                 result = result + inputLine;
+            }
             in.close();	
     	}
     	catch(Exception e)
@@ -189,8 +211,9 @@ public class Util {
     private String getStoreId()
     {
     	String id;
+    
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID")+3);
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("ID"+2));
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     	
     }
@@ -198,28 +221,28 @@ public class Util {
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Name"+4));
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Name")+5);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
     private String getStoreAddress()
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("FormattedAddress"+16));
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("FormattedAddress")+17);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
     private String getTelephone()
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("TelephoneNumber"+15));
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("TelephoneNumber")+15);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
     private String getDistance()
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance"+8));
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+8);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
 

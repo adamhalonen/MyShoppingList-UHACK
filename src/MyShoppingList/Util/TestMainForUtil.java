@@ -42,10 +42,17 @@ public class TestMainForUtil {
 		}
 	*/
 		Util util = new Util();
+		String[][] stores;
 		
-		util.closestStores("2115+Summit+Ave,+St.+Paul,+MN");
+		stores = util.closestStores("2115+Summit+Ave,+St.+Paul,+MN");
 		
-		System.out.println();
+		for(int i = 0;i<10;i++)
+		{
+			for(int j = 0;j<5;j++)
+			{
+				System.out.print(stores[i][j]+" ");
+			}
+			System.out.println();
+		}
 	}
-	
 }
