@@ -1,5 +1,6 @@
 package MyShoppingList.Panels;
 
+import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -19,22 +20,28 @@ public class StoreResultsPanel extends JPanel
 		
 		setBounds(0,0,800,600);
 		setLayout(null);
-		
-		String[] stores;
+	}
+	
+	public void setUp()
+	{
+		DefaultListModel stores = new DefaultListModel();
 		String[][] rawStores;
 		Util util = new Util(driver);
+		String storeInfo;
 		
-		rawStores = util.closestStores(driver.getAddressPanel().getAddress());
-		stores = new String[rawStores.length];
+		rawStores = util.closestStores(driver.getAddressPanel().getAddress(),driver.getAddressPanel().getRange());
+		//stores = new String[rawStores.length];
 		for(int i = 0; i < rawStores.length; i++)
 		{
+			storeInfo = "";
 			for(int j = 0; j < rawStores[i].length; j++)
 			{
-				stores[i] = stores[i] + rawStores[i][j] + "\t\t";
+				storeInfo += rawStores[i][j] + "\t\t";
 			}
+			stores.addElement(storeInfo);
 		}
 		
-		JList list = new JList(stores);
+		JList<String> list = new JList<String>(stores);
 		list.setSelectedIndex(0);
 		list.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		

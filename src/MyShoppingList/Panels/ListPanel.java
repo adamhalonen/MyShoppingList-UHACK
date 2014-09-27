@@ -97,6 +97,7 @@ public class ListPanel extends JPanel implements ActionListener
 			{
 				products[i] = (String) listModel.getElementAt(i);
 			}
+			driver.getStoreResults().setUp();
 		}
 		else if(cmd.equalsIgnoreCase("back"))
 		{
