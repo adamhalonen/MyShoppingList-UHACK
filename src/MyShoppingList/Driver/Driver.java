@@ -16,14 +16,17 @@ import javax.swing.border.EmptyBorder;
 
 import MyShoppingList.Panels.AboutPanel;
 import MyShoppingList.Panels.AddressPanel;
+import MyShoppingList.Panels.ListPanel;
 import MyShoppingList.Panels.MenuBar;
 
 public class Driver extends JFrame
 {
+	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	
 	//Panels
 	private AddressPanel addressPanel = new AddressPanel(this);
+	private ListPanel listPanel = new ListPanel(this);
 	private AboutPanel aboutPanel = new AboutPanel(this);
 	
 	//Menu Bar 
@@ -72,6 +75,8 @@ public class Driver extends JFrame
 		
 		contentPane.add(addressPanel);
 		
+		contentPane.add(listPanel);
+		
 		JLabel bg = new JLabel();
 		bg.setBounds(0, 0, 794, 565);
 		bg.setIcon(new ImageIcon("res/bg.png"));
@@ -79,4 +84,5 @@ public class Driver extends JFrame
 	}
 	
 	public AboutPanel getAboutPanel(){return aboutPanel;}
+	public ListPanel getListPanel(){return listPanel;}
 }

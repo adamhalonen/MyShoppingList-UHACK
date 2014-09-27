@@ -12,6 +12,7 @@ import MyShoppingList.Driver.Driver;
 
 public class MenuBar extends JPanel implements ActionListener
 {
+	private static final long serialVersionUID = 1L;
 	private Driver driver;
 	
 	public MenuBar(Driver d)

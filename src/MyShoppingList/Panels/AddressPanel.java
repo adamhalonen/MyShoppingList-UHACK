@@ -1,16 +1,14 @@
 package MyShoppingList.Panels;
 
-import javax.swing.JPanel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
-import MyShoppingList.Driver.Driver;
-import java.awt.GridBagLayout;
-import javax.swing.JTextField;
-import java.awt.GridBagConstraints;
-import java.awt.Insets;
 import javax.swing.JButton;
 import javax.swing.JLabel;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+import MyShoppingList.Driver.Driver;
 
 public class AddressPanel extends JPanel implements ActionListener
 {
@@ -35,49 +33,55 @@ public class AddressPanel extends JPanel implements ActionListener
 		setBounds(0,0,800,600);
 		
 		lblAddress = new JLabel("Address:");
-		lblAddress.setBounds(280, 214, 51, 16);
+		lblAddress.setBounds(313, 214, 51, 16);
 		add(lblAddress);
 		
 		textField = new JTextField();
-		textField.setBounds(376, 211, 116, 22);
+		textField.setBounds(395, 211, 116, 22);
 		add(textField);
 		textField.setColumns(10);
 		
 		lblCity = new JLabel("City:");
-		lblCity.setBounds(290, 241, 26, 16);
+		lblCity.setBounds(326, 241, 26, 16);
 		add(lblCity);
 		
 		textField_1 = new JTextField();
-		textField_1.setBounds(376, 238, 116, 22);
+		textField_1.setBounds(395, 238, 116, 22);
 		add(textField_1);
 		textField_1.setColumns(10);
 		
 		lblState = new JLabel("State:");
-		lblState.setBounds(286, 268, 35, 16);
+		lblState.setBounds(320, 268, 35, 16);
 		add(lblState);
 		
 		textField_2 = new JTextField();
-		textField_2.setBounds(376, 265, 116, 22);
+		textField_2.setBounds(395, 265, 116, 22);
 		add(textField_2);
 		textField_2.setColumns(10);
 		
 		lblMileRadius = new JLabel("Mile Radius:");
-		lblMileRadius.setBounds(272, 296, 76, 16);
+		lblMileRadius.setBounds(304, 295, 76, 16);
 		add(lblMileRadius);
 		
 		textField_4 = new JTextField();
-		textField_4.setBounds(376, 292, 116, 22);
+		textField_4.setBounds(395, 292, 116, 22);
 		add(textField_4);
 		textField_4.setColumns(10);
 		
 		btnSubmit = new JButton("Submit");
 		btnSubmit.setBounds(352, 325, 97, 25);
+		btnSubmit.setActionCommand("submit");
+		btnSubmit.addActionListener(this);
 		add(btnSubmit);
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		
+		if(e.getActionCommand().equalsIgnoreCase("submit"))
+		{
+			setVisible(false);
+			driver.getListPanel().setVisible(true);
+		}
 	}
 }
