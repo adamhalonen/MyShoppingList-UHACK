@@ -2,6 +2,10 @@ package MyShoppingList.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -80,6 +84,48 @@ public class MenuBar extends JPanel implements ActionListener
 		}
 		else if(cmd.equalsIgnoreCase("save"))
 		{
+			String str= "4403 W. Madero Dr.,234,20";
+			File file;
+			PrintWriter pw;
+			int hold;
+			int hold2;
+			
+			
+			
+			file=new File("preferences.txt");
+			
+			try
+			{
+				pw=new PrintWriter(new FileWriter(file));
+				
+				
+				hold=str.indexOf(",");
+				
+				pw.println("Address: " + str.substring(0,hold));
+				
+				hold2=str.indexOf(",",hold+1);
+				
+				pw.println("Store ID: " + str.substring(hold+1,hold2));
+				
+				
+				pw.println("Mile Radius: " + str.substring(hold2+1));
+				
+				
+				
+				
+				
+				pw.flush();
+				
+				
+				pw.close();
+				
+				
+			}
+			catch(IOException ioe)
+			{
+				
+				ioe.printStackTrace();
+			}
 			
 		}
 		else if(cmd.equalsIgnoreCase("load"))
