@@ -2,28 +2,38 @@ package MyShoppingList.Panels;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
 import MyShoppingList.Driver.Driver;
+import MyShoppingList.Util.Util;
 
-public class ProductAvailabilityPanel extends JPanel implements ActionListener
+public class ProductAvailabilityPanel extends JPanel implements ActionListener , MouseListener
 {
 	private Driver driver;
 	private JTextArea textArea;
 	private JLabel lblName;
 	private JLabel lblPhoneNumberaddress;
 	private JButton btnBack;
+	private JLabel lblDirectionsimage;
+	private Util util = new Util();
 	
 	public ProductAvailabilityPanel(Driver d)
 	{
 		setOpaque(false);
 		setLayout(null);
 		driver = d;
+		
+		lblDirectionsimage = new JLabel("");
+		lblDirectionsimage.setBounds(0, 0, 800, 600);
+		add(lblDirectionsimage);
 		
 		setVisible(false);
 		setBounds(0,0,800,600);
@@ -55,6 +65,11 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener
 		btnBack.addActionListener(this);
 		btnBack.setActionCommand("back");
 		add(btnBack);
+		
+		lblDirectionsimage = new JLabel("");
+		lblDirectionsimage.setBounds(0, 0, 800, 600);
+		add(lblDirectionsimage);
+		lblDirectionsimage.addMouseListener(this);
 	}
 	
 	public void setLabelsAndProducts(String name, String addressPhoneNumber, String[] products)
@@ -70,11 +85,34 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener
 	@Override
 	public void actionPerformed(ActionEvent e)
 	{
-		if(e.getActionCommand().equals("directions")){}
+		if(e.getActionCommand().equals("directions"))
+		{
+			lblDirectionsimage.setIcon(util.getDirections(driver.getAddressPanel().getAddress(), lblName.getText()));
+		}
 		else if(e.getActionCommand().equals("back"))
 		{
 			setVisible(false);
 			driver.getStoreResults().setVisible(true);
+			textArea.setText("");
+			lblDirectionsimage.setIcon(null);
 		}
 	}
+
+	@Override
+	public void mouseClicked(MouseEvent e)
+	{
+		((JComponent) e.getSource()).setVisible(false);
+	}
+
+	@Override
+	public void mouseEntered(MouseEvent arg0) {}
+
+	@Override
+	public void mouseExited(MouseEvent arg0) {}
+
+	@Override
+	public void mousePressed(MouseEvent arg0) {}
+
+	@Override
+	public void mouseReleased(MouseEvent arg0) {}
 }
