@@ -40,11 +40,14 @@ public class Driver extends JFrame
 		double width = screenSize.getWidth();
 		double height = screenSize.getHeight();
 		
+		setResizable(false);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds((int)width/2-400, (int)height/2-300, 800, 600);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		contentPane.setLayout(new BorderLayout(0, 0));
 		setContentPane(contentPane);
+		
+		contentPane.add(addressPanel);
 	}
 }
