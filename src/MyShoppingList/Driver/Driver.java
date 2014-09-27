@@ -31,7 +31,7 @@ public class Driver extends JFrame
 	private ListPanel listPanel = new ListPanel(this);
 	private AboutPanel aboutPanel = new AboutPanel(this);
 	private StoreResultsPanel storeResultsPanel = new StoreResultsPanel(this);
-	private ProductAvailabilityPanel prodAvlPanel = new ProductAvailabilityPanel();
+	private ProductAvailabilityPanel prodAvlPanel = new ProductAvailabilityPanel(this);
 	
 	//Menu Bar 
 	private MenuBar menuBar = new MenuBar(this);
@@ -82,6 +82,8 @@ public class Driver extends JFrame
 		contentPane.add(listPanel);
 		
 		contentPane.add(storeResultsPanel);
+		
+		contentPane.add(prodAvlPanel);
 		
 		JLabel bg = new JLabel();
 		bg.setBounds(0, 0, 794, 565);
