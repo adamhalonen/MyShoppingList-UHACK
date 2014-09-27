@@ -34,6 +34,7 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		lblDirectionsimage = new JLabel("");
 		lblDirectionsimage.setBounds(0, 0, 800, 600);
 		add(lblDirectionsimage);
+		lblDirectionsimage.addMouseListener(this);
 		
 		setVisible(false);
 		setBounds(0,0,800,600);
@@ -66,10 +67,6 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 		btnBack.setActionCommand("back");
 		add(btnBack);
 		
-		lblDirectionsimage = new JLabel("");
-		lblDirectionsimage.setBounds(0, 0, 800, 600);
-		add(lblDirectionsimage);
-		lblDirectionsimage.addMouseListener(this);
 	}
 	
 	public void setLabelsAndProducts(String name, String addressPhoneNumber, String[] products)
