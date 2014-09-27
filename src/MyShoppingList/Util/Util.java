@@ -235,14 +235,14 @@ public class Util {
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("TelephoneNumber")+15);
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("PhoneNumber>(")+12);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
     private String getDistance()
     {
     	String id;
     	
-    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+8);
+    	this.storeAddress = this.storeAddress.substring(this.storeAddress.indexOf("Distance")+26);
     	return this.storeAddress.substring(0,this.storeAddress.indexOf('<'));
     }
 
