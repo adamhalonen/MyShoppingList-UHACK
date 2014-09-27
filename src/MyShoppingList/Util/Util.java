@@ -123,11 +123,11 @@ public class Util {
 
     }
     
-    private void geoCoding()
+    private void geoCoding(String address)
     {
     	try
     	{
-            URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=1600+Amphitheatre+Parkway,+Mountain+View,+CA&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
+            URL oracle = new URL("https://maps.googleapis.com/maps/api/geocode/json?address=" + address + "&key=AIzaSyC1WYPjAlZtv5cjzWmHkc2nq3s0odsAJuo");
             URLConnection yc = oracle.openConnection();
             BufferedReader in = new BufferedReader(new InputStreamReader(
                                         yc.getInputStream()));
