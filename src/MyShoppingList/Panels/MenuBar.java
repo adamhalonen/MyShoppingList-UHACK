@@ -97,6 +97,8 @@ public class MenuBar extends JPanel implements ActionListener
 			
 			try
 			{
+				this.driver.getListPanel().setProducts();
+				
 				pw=new PrintWriter(new FileWriter(file));
 				
 				if(!str.equals(""))
@@ -114,6 +116,11 @@ public class MenuBar extends JPanel implements ActionListener
 					pw.println("State: " + str.substring(hold+2,str.length()-1));
 					
 					pw.println("MileRadius: " + this.driver.getAddressPanel().getRange());
+					
+					for(int i=0; i<this.driver.getListPanel().getProducts().length;i++)
+					{
+						pw.println(this.driver.getListPanel().getProducts()[i]);
+					}
 				}
 				
 				
@@ -147,6 +154,8 @@ public class MenuBar extends JPanel implements ActionListener
 			result="";
 			theAddress = "";
 			theDistanceVariable = "";
+			
+			
 			
 			try
 			{
