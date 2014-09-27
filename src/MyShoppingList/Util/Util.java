@@ -163,6 +163,9 @@ public class Util {
 
     public String[][] closestStores(String address,int range)
     {
+    	if(address==null){throw new IllegalArgumentException("closestStores string address param==null");}
+    	if(range<=0){throw new IllegalArgumentException("range param in closestStores is less than or equal to 0");}
+    	
     	double[] geoCord = new double[2];
     	String theDistance;
     	int i = 0;
@@ -208,6 +211,9 @@ public class Util {
     
     public String[][] getProductInfo(String[] products,String storeID)
     {
+    	if(products==null){throw new IllegalArgumentException("in getProductInfo the string array parameter==null");}
+    	if(storeID==null){throw new IllegalArgumentException("getProductInfo string param==null");}
+    	
     	String[][] productInfo = new String[products.length][3];
     	
     	for(int i = 0;i < products.length;i++)
