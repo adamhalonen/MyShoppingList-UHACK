@@ -104,14 +104,15 @@ public class MenuBar extends JPanel implements ActionListener
 				
 					pw.println("Address: " + str.substring(0,hold));
 				
-					hold2=str.indexOf(",",hold+1);
+					hold2=str.indexOf(",",hold+2);
 				
-					pw.println("City: " + str.substring(hold+1,hold2));
+					pw.println("City: " + str.substring(hold+2,hold2-1));
 				
-					hold=str.indexOf(",",hold2+1);
-					pw.println("State: " + str.substring(hold2+1,hold));
+					hold=str.indexOf(",",hold2);
+					System.out.println(hold);
+					pw.println("State: " + str.substring(hold+2,str.length()-1));
 					
-					pw.println("Mile Radius: " + str.substring(hold+1));
+					pw.println("Mile Radius: " + this.driver.getAddressPanel().getRange());
 				}
 				
 				
