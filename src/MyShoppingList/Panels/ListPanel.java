@@ -56,7 +56,7 @@ public class ListPanel extends JPanel implements ActionListener
 		btnFindStore.addActionListener(this);
 		add(btnFindStore);
 		
-		JList<String> list = new JList<String>();
+		JList<String> list;
 		listModel = new DefaultListModel();
 		list = new JList(listModel);
 		list.setSelectedIndex(0);
