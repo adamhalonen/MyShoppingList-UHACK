@@ -107,6 +107,7 @@ public class ProductAvailabilityPanel extends JPanel implements ActionListener ,
 	{
 		lblName.setText(name);
 		lblPhoneNumberaddress.setText(addressPhoneNumber);
+		System.out.println(driver.getStoreResults().getSelectedStoreId());
 		String[][] prodInfo = util.getProductInfo(driver.getListPanel().getProducts(), driver.getStoreResults().getSelectedStoreId());
 		items = prodInfo[0];
 		prices = prodInfo[1];

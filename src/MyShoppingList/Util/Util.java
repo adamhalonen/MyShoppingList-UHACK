@@ -224,7 +224,7 @@ public class Util {
     		j++;
     		productInfo[i][j] = getPrice(productID);
     		j++;
-    		productInfo[i][j] = ((Double)getProductStock(Integer.parseInt(storeID), productID)).toString();
+    		productInfo[i][j] = (getProductStock(Integer.parseInt(storeID), productID)) + "";
     	}
     	
     	return productInfo;
