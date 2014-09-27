@@ -403,6 +403,7 @@ public class Util {
 		inputLine="";
 		result=0;
 		holdString="";
+		productId = getProductID(productId);
 		
 		
 		try

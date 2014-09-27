@@ -106,5 +106,9 @@ public class ListPanel extends JPanel implements ActionListener
 		}
 	}
 	
-	public String[] getProducts(){return products;}
+	public String[] getProducts()
+	{
+		//System.out.println(products[0]);
+		return products;
+	}
 }
